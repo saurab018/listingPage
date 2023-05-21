@@ -1,4 +1,12 @@
-import { Box, Container, Flex, Grid, Stack, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Flex,
+  Grid,
+  ScaleFade,
+  Stack,
+  VStack,
+} from "@chakra-ui/react";
 import Header from "../../components/Listing/header/Header";
 import { useContext, useEffect, useState } from "react";
 import useFetch from "../../helper/customHooks/useFetch";
@@ -40,27 +48,32 @@ function Listing() {
                 >
                   {peoples && (
                     <Container>
-                      <Box
-                        textAlign={"center"}
-                        fontSize={"4xl"}
-                        fontWeight={"bold"}
-                        as="h2"
-                      >
-                        People
-                      </Box>
+                      <ScaleFade initialScale={0.7} isOpen={peoples}>
+                        <Box
+                          textAlign={"center"}
+                          fontSize={"4xl"}
+                          fontWeight={"bold"}
+                          as="h2"
+                        >
+                          People
+                        </Box>
+                      </ScaleFade>
+
                       <ListingItems data={peopleData} category={"people"} />
                     </Container>
                   )}
                   {planets && (
                     <Container>
-                      <Box
-                        fontSize={"4xl"}
-                        textAlign={"center"}
-                        fontWeight={"bold"}
-                        as="h2"
-                      >
-                        Planets
-                      </Box>
+                      <ScaleFade initialScale={0.7} isOpen={planets}>
+                        <Box
+                          fontSize={"4xl"}
+                          textAlign={"center"}
+                          fontWeight={"bold"}
+                          as="h2"
+                        >
+                          Planets
+                        </Box>{" "}
+                      </ScaleFade>
                       <ListingItems data={planetsData} category={"planets"} />
                     </Container>
                   )}

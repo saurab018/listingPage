@@ -9,8 +9,10 @@ function Header({}) {
     useContext(ListingContext);
 
   const [searchResult, setSearchResult] = useState([]);
-  const [search, setSearch] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
   const inputText = useRef();
+
+  console.log("sea", searchTerm);
 
   function onClickHandler(
     valueForPlanet,
@@ -23,21 +25,27 @@ function Header({}) {
   }
 
   const onChangeHandler = (e) => {
-    setSearch(e.target.value);
+    setSearchTerm(e.target.value);
     if (e.target.value == "") {
       setSearchResult([]);
     }
   };
 
   useEffect(() => {
-    const searchItem = searchResultFunction(
-      { planets, peoples, planetsData, peopleData },
-      search
-    );
-    if (searchItem.length > 0) {
-      setSearchResult([...searchItem]);
-    }
-  }, [search, planets, peoples]);
+    const timer = setTimeout(() => {
+      const searchItem = searchResultFunction(
+        { planets, peoples, planetsData, peopleData },
+        searchTerm
+      );
+      if (searchItem.length > 0) {
+        setSearchResult([...searchItem]);
+      }
+      if (searchItem.length == 0 && searchTerm !== "") {
+        setSearchResult([{ name: "No Result Found" }]);
+      }
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [searchTerm, planets, peoples]);
   console.dir(searchResult);
 
   return (
@@ -58,13 +66,13 @@ function Header({}) {
             onChange={onChangeHandler}
             placeholder="Search..."
             variant="outline"
-            value={search}
+            value={searchTerm}
             minWidth={"18em"}
             ref={inputText}
           />
-          {search.length !== "" && searchResult.length > 0 ? (
+          {searchTerm.length !== "" && searchResult.length > 0 ? (
             <SearchList
-              setSearch={setSearch}
+              setSearchTerm={setSearchTerm}
               searchResult={searchResult}
               inputTextRef={inputText}
             />

@@ -1,4 +1,4 @@
-import { Box, Container } from "@chakra-ui/react";
+import { Box, Container, Fade } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ListingContext } from "../../../store/context";
@@ -9,42 +9,73 @@ function SearchList({ searchResult, inputTextRef, setSearch }) {
   return (
     <Container
       position={"absolute"}
-      top={"3em"}
-      bg={"blue.300"}
+      top={"2.9em"}
+      backgroundColor={"blue.400"}
       left={"1.3em"}
-      transition={"0.3s ease-out"}
+      opacity={searchResult.length > 0 ? 1 : 0}
+      transform={
+        searchResult.length > 0 ? "translateY(0)" : "translateY(-20px)"
+      }
+      roundedBottom={"md"}
+      transition={"all 0.5s ease-out"}
     >
-      {searchResult
-        // .filter((item) => item.name)
-        .map((item, index) => (
+      {searchResult.map((item, index) =>
+        item.id == "*" && item.name == "No Result Found" ? (
+          <Fade in={searchResult.length > 0}>
+            <Box
+              opacity={searchResult.length > 0 ? 1 : 0}
+              transform={
+                searchResult.length > 0 ? "translateX(0)" : "translateX(-20px)"
+              }
+              transition={"all 0.5s ease-out"}
+            >
+              {item.name}
+            </Box>
+          </Fade>
+        ) : (
           <Link
             key={index}
             to={
-              item.url.includes("people")
+              item.url && item.url.includes("people")
                 ? `/people/${index + 1}`
                 : `/planets/${index + 1}`
             }
             onClick={() => {
-              item.url.includes("people")
+              item.url && item.url.includes("people")
                 ? selectItem(peopleData[index])
                 : selectItem(planetsData[index]);
               inputTextRef.current = null;
               setSearch("");
             }}
           >
-            <Box
-              _hover={{ backgroundColor: "blue.200", cursor: "pointer" }}
-              key={index}
-              textAlign={"center"}
-              shadow={"2"}
-              columnGap={"2em"}
-              minWidth={"16em"}
-              transition={"0.3s ease-out"}
-            >
-              {item.name}
-            </Box>
+            <Fade in={searchResult.length > 0}>
+              <Box
+                _hover={{
+                  backgroundColor: "blue.200",
+                  cursor: "pointer",
+                  borderBottom: "0.1em solid gray",
+                }}
+                key={index}
+                textAlign={"center"}
+                minWidth={"16em"}
+                transition={"0.2s ease-out"}
+                marginTop={"none"}
+                paddingBottom={"0.2em"}
+                borderTop={"0.1em solid white"}
+                opacity={searchResult.length > 0 ? 1 : 0}
+                transform={
+                  searchResult.length > 0
+                    ? "translateX(0)"
+                    : "translateX(-20px)"
+                }
+                transitionDelay={`${index * 0.1}s`}
+              >
+                {item.name}
+              </Box>
+            </Fade>
           </Link>
-        ))}
+        )
+      )}
     </Container>
   );
 }

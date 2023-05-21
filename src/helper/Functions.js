@@ -20,3 +20,11 @@ export const searchResultFunction = (
   }
   return searchItem(search, totalData);
 };
+
+export function debounce(func, delay) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => func(...args), delay);
+  };
+}
