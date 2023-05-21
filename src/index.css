@@ -1,0 +1,9 @@
+html {
+  text-size-adjust: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+* {
+  box-sizing: border-box;
+}
