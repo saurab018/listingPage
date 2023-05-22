@@ -1,17 +1,39 @@
-import { Box, Button, Flex, Input, Stack } from "@chakra-ui/react";
-import { useContext, useEffect, useRef, useState } from "react";
+import {
+  Box,
+  Button,
+  Flex,
+  Input,
+  Stack,
+  Tab,
+  TabList,
+  Tabs,
+} from "@chakra-ui/react";
+import {
+  forwardRef,
+  useContext,
+  useDeferredValue,
+  useEffect,
+  useState,
+} from "react";
 import { searchResultFunction } from "../../../helper/Functions";
 import { ListingContext } from "../../../store/context";
 import SearchList from "./SearchList";
 
-function Header({}) {
-  const { peopleData, planetsData, peoples, planets, setPeoples, setPlanets } =
-    useContext(ListingContext);
+function Header({}, ref) {
+  const {
+    peopleData,
+    planetsData,
+    peoples,
+    planets,
+    setPeoples,
+    setPlanets,
+    searchResult,
+    setSearchResult,
+  } = useContext(ListingContext);
 
-  const [searchResult, setSearchResult] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const inputText = useRef();
 
+  const deferedSearchTerm = useDeferredValue(searchTerm);
   console.log("sea", searchTerm);
 
   function onClickHandler(
@@ -32,55 +54,61 @@ function Header({}) {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      const searchItem = searchResultFunction(
-        { planets, peoples, planetsData, peopleData },
-        searchTerm
-      );
-      if (searchItem.length > 0) {
-        setSearchResult([...searchItem]);
-      }
-      if (searchItem.length == 0 && searchTerm !== "") {
-        setSearchResult([{ name: "No Result Found" }]);
-      }
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, [searchTerm, planets, peoples]);
-  console.dir(searchResult);
+    const searchItem = searchResultFunction(
+      { planets, peoples, planetsData, peopleData },
+      searchTerm
+    );
+    console.log("===", Object.keys(searchItem) == 0);
+
+    if (Object.keys(searchItem) !== 0) {
+      setSearchResult({ ...searchItem });
+    }
+    if (Object.keys(searchItem) == 0 && searchTerm !== "") {
+      setSearchResult({ name: "No Result Found" });
+    }
+  }, [deferedSearchTerm, planets, peoples]);
 
   return (
-    <Box>
+    <Box width={"100%"} paddingX={"1em"}>
       <Flex
-        maxW={"2xl"}
-        minWidth={{ base: "24em", sm: "36em", md: "40em", lg: "52em" }}
-        direction={{ base: "column", md: "row" }}
+        direction={{ base: "column" }}
+        // minW={{ sm: "100%", md: "100%", lg: "100%", xl: "100%" }}
         spacing="4"
         align="center"
         justifyContent="space-between"
         marginTop={"2em"}
         border={"1px solid black"}
       >
-        <Box p="1" position={"relative"}>
-          <Input
-            type="text"
-            onChange={onChangeHandler}
-            placeholder="Search..."
-            variant="outline"
-            value={searchTerm}
-            minWidth={"18em"}
-            ref={inputText}
-          />
-          {searchTerm.length !== "" && searchResult.length > 0 ? (
-            <SearchList
-              setSearchTerm={setSearchTerm}
-              searchResult={searchResult}
-              inputTextRef={inputText}
-            />
-          ) : null}
-        </Box>
-
-        <Stack p="1" spacing="4" direction="row">
-          <Button
+        {/* <Stack */}
+        {/* p="1"
+          spacing="4"
+          direction="row"
+          marginRight={"auto"}
+          marginLeft={{ sm: "auto", md: "3em" }}
+          marginY={"0.30em"} */}
+        {/* > */}
+        <Tabs
+          p="1"
+          spacing="4"
+          direction="row"
+          marginRight={"auto"}
+          marginLeft={{ sm: "auto", md: "3em" }}
+          marginY={"0.30em"}
+        >
+          <TabList>
+            <Tab
+              sx={{ colorScheme: peoples ? "blue" : "gray" }}
+              onClick={() =>
+                onClickHandler(false, setPlanets, true, setPeoples)
+              }
+            >
+              Button 1
+            </Tab>
+            <Tab>Button 2</Tab>
+            <Tab>Button 3</Tab>
+          </TabList>
+        </Tabs>
+        {/* <Button
             onClick={() => onClickHandler(false, setPlanets, true, setPeoples)}
             colorScheme="teal"
           >
@@ -97,11 +125,22 @@ function Header({}) {
             colorScheme="blue"
           >
             Planets
-          </Button>
-        </Stack>
+          </Button> */}
+        {/* </Stack> */}
+        <Box p="1" position={"relative"} marginLeft={{ md: "auto" }}>
+          <Input
+            type="text"
+            onChange={onChangeHandler}
+            placeholder="Search..."
+            variant="outline"
+            value={searchTerm}
+            minWidth={"18em"}
+            ref={ref}
+          />
+        </Box>
       </Flex>
     </Box>
   );
 }
 
-export default Header;
+export default Header = forwardRef(Header);

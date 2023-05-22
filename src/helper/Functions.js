@@ -1,24 +1,40 @@
-export function searchItem(input, totalData) {
+export function searchItem(input, { searchPeople, searchPlantes }) {
+  let people;
+  let planets;
   const regex = new RegExp(input, "i");
-  const filteredArray = totalData.filter((item) => {
-    return regex.test(item.name);
-  });
-  return filteredArray;
+
+  if (searchPeople.length > 0) {
+    people = searchPeople.filter((item) => {
+      return regex.test(item.name);
+    });
+  }
+  if (searchPlantes.length > 0) {
+    planets = searchPlantes.filter((item) => {
+      return regex.test(item.name);
+    });
+  }
+  console.log("jsdj", { people: people, planets: planets });
+  return { people: people, planets: planets };
 }
+
 export const searchResultFunction = (
   { peoples, planetsData, peopleData, planets },
   search
 ) => {
-  let totalData;
+  let searchPeople = [];
+  let searchPlantes = [];
   if (search == "") return [];
   if (peoples == true && planets == true) {
-    totalData = [...peopleData, ...planetsData];
-  } else if (peoples == true) {
-    totalData = [...peopleData];
-  } else {
-    totalData = [...planetsData];
+    searchPeople = [...peopleData];
+    searchPlantes = [...planetsData];
   }
-  return searchItem(search, totalData);
+  if (peoples == true) {
+    searchPeople = [...peopleData];
+  }
+  if (searchPlantes) {
+    searchPlantes = [...planetsData];
+  }
+  return searchItem(search, { searchPeople, searchPlantes });
 };
 
 export function debounce(func, delay) {

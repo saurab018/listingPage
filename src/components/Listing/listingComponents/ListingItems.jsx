@@ -1,6 +1,7 @@
 import {
   Box,
   Container,
+  Fade,
   Grid,
   GridItem,
   ScaleFade,
@@ -13,13 +14,28 @@ import { ListingContext } from "../../../store/context";
 
 const ListingItems = ({ data, category }) => {
   const { selectItem } = useContext(ListingContext);
+  console.log("item", data);
   return (
     <>
+      {data.length !== 0 && (
+        <Fade in={category}>
+          <Text
+            fontSize={"4xl"}
+            textAlign={"center"}
+            fontWeight={"bold"}
+            marginBottom={"0.6em"}
+            as="h2"
+          >
+            {category == "people" ? "People" : "Planets"}
+          </Text>
+        </Fade>
+      )}
       <Grid
         templateColumns={{
           base: "repeat(1, 1fr)",
-          md: "repeat(2,1fr)",
+          md: data.length == 1 ? "repeat(1,1fr)" : "repeat(2,1fr)",
         }}
+        justifyContent={"center"}
         gridGap={3}
       >
         {data.map((listItem, index) => (
@@ -35,13 +51,14 @@ const ListingItems = ({ data, category }) => {
                   gap="2"
                   _hover={{
                     cursor: "pointer",
-                    backgroundColor: "blue.200",
+                    backgroundColor: "#DFDFDF",
                     shadow: "md",
+                    color: "#333333",
                   }}
                   sx={{
                     borderRadius: "1em",
                     shadow: "lg",
-                    backgroundColor: "blue.300",
+                    backgroundColor: "#FEFEFE",
                   }}
                   onClick={() => selectItem(listItem)}
                 >
