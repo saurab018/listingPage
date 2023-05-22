@@ -11,7 +11,6 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import AccordionComponent from "../../../Accordion";
-import { NavLink } from "react-router-dom";
 
 function PlanetItem({ data, url }) {
   console.log(data);
@@ -38,9 +37,11 @@ function PlanetItem({ data, url }) {
               fontWeight: "bold",
               color: "black",
               marginLeft: "1em",
+              backgroundColor: "#F5F7DD",
               ":hover": {
                 color: "blue",
                 cursor: "pointer",
+                backgroundColor: "#F1F4CD",
               },
             }}
           >

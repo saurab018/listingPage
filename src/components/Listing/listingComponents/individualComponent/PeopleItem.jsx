@@ -1,5 +1,6 @@
 import { Box, Button, Container, Flex, Link, VStack } from "@chakra-ui/react";
 import AccordionComponent from "../../../Accordion";
+import { Link as RouterLink } from "react-router-dom";
 
 function PeopleItem({ data, url }) {
   const {
@@ -22,7 +23,7 @@ function PeopleItem({ data, url }) {
   return (
     <VStack align="start" color={"cyan.600"} minH={"100vh"}>
       <Flex gap={2} marginTop={4} width={"100vw"}>
-        <Link to={"/"}>
+        <RouterLink to={"/"}>
           <Box
             sx={{
               fontSize: "2xl",
@@ -37,16 +38,18 @@ function PeopleItem({ data, url }) {
           >
             Listing Page
           </Box>
-        </Link>
+        </RouterLink>
       </Flex>
       <Flex width={"100vw"} justifyContent={"center"}>
         <Container
           rounded={"3xl"}
           shadow={"2xl"}
           boxShadow={"2xl"}
+          backgroundColor="#D4EDF9"
           _hover={{
             shadow: "3xl",
             scale: "1.2",
+            backgroundColor: "#C4DCF2",
           }}
         >
           <Container
