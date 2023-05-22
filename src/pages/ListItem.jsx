@@ -8,8 +8,7 @@ import useFetch from "../helper/customHooks/useFetch";
 import axios from "axios";
 
 function ListItem() {
-  const { selectedItem, peopleData, planetsData, loading1, loading2 } =
-    useContext(ListingContext);
+  const { selectedItem } = useContext(ListingContext);
   const params = useParams();
 
   const { data: item, loading } = !selectedItem
@@ -20,13 +19,13 @@ function ListItem() {
     return loading ? (
       <SpinnerComponent />
     ) : (
-      <PeopleItem data={selectedItem ? selectedItem : item} />
+      <PeopleItem data={selectedItem ? selectedItem : item} url={params} />
     );
   if (params.item == "planets")
     return loading ? (
       <SpinnerComponent />
     ) : (
-      <PlanetItem data={selectedItem ? selectedItem : item} />
+      <PlanetItem data={selectedItem ? selectedItem : item} url={params} />
     );
 }
 

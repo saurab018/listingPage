@@ -1,8 +1,17 @@
 import { ArrowBackIcon } from "@chakra-ui/icons";
-import { Box, Container, Flex, IconButton, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  IconButton,
+  Link,
+  VStack,
+} from "@chakra-ui/react";
 import React from "react";
+import AccordionComponent from "../../../Accordion";
 
-function PlanetItem({ data }) {
+function PlanetItem({ data, url }) {
   console.log(data);
   const {
     climate,
@@ -18,42 +27,105 @@ function PlanetItem({ data }) {
     terrain,
   } = data;
   return (
-    <VStack spacing={4} align="start" padding={4}>
+    <VStack align="start" color={"cyan.600"} minH={"100vh"}>
       <Flex gap={2} marginTop={4} width={"100vw"}>
-        <IconButton
-          aria-label="Back To Previous Page"
-          icon={<ArrowBackIcon />}
-          colorScheme="Cyan 600"
-          variant="ghost"
-        />
+        <Box
+          sx={{
+            fontSize: "2xl",
+            fontWeight: "bold",
+            color: "black",
+            marginLeft: "1em",
+            ":hover": {
+              color: "blue",
+            },
+          }}
+        >
+          Listing Page
+        </Box>
       </Flex>
       <Flex width={"100vw"} justifyContent={"center"}>
         <Container
           maxWidth="lg"
           border="1px solid gray"
+          minH={"35em"}
           padding={4}
           rounded={"3xl"}
           shadow={"2xl"}
-          boxShadow={"white"}
+          boxShadow={"2xl"}
           transition={"0.3s ease-out"}
           _hover={{
             shadow: "xl",
-            cursor: "pointer",
             scale: "1.2",
-            // translate: "1.5em 1.5em",
           }}
+          minW={"21.9em"}
         >
-          <Box>Name: {name}</Box>
-          <Box>Climate: {climate}</Box>
-          <Box>Gravity: {gravity}</Box>
-          <Box>Population: {population}</Box>
-          <Box>Diameter: {diameter}</Box>
-          <Box>Orbital Period: {orbital_period}</Box>
-          <Box>Surface Water: {surface_water}</Box>
-          {/* <Box>Residents: {residents}</Box> */}
-          <Box>Rotation Period: {rotation_period}</Box>
-          <Box>Terrain: {terrain}</Box>
-          {/* <Box>Films: {films}</Box> */}
+          <Box border={"1px solid black"}>
+            <Button
+              // sx={{ marginLeft: "auto", mr: "1em" }}
+              marginLeft={"auto"}
+              onClick={() => history.back()}
+              colorScheme="teal"
+            >
+              Peoples
+            </Button>
+          </Box>
+          <Box marginTop={"0.5em"}>
+            <Box as="h2" fontSize="2xl" fontWeight="bold" marginBottom={4}>
+              {name}
+            </Box>
+            <Box>
+              <strong>Climate: </strong>
+              {climate}
+            </Box>
+            <Box>
+              <strong>Gravity: </strong>
+              {gravity}
+            </Box>
+            <Box>
+              <strong>Population:</strong> {population}
+            </Box>
+            <Box>
+              <strong>Diameter: </strong>
+              {diameter}
+            </Box>
+            <Box>
+              <strong>Orbital Period: </strong>
+              {orbital_period}
+            </Box>
+            <Box>
+              <strong>Surface Water: </strong>
+              {surface_water}
+            </Box>
+
+            <Box>
+              <strong>Rotation Period: </strong>
+              {rotation_period}
+            </Box>
+            <Box>
+              <strong>Terrain: </strong>
+              {terrain}
+            </Box>
+            <Box>
+              <strong>Page URL: </strong>
+              <Link href={url} target="_blank" _hover={{ color: "blue" }}>
+                {`User ${url.id}`}
+              </Link>
+            </Box>
+            <Box>
+              <AccordionComponent
+                data={residents}
+                name={"Residents"}
+                notAvailable={"Non-habitable"}
+              />
+            </Box>
+            <Box>
+              <AccordionComponent
+                data={films}
+                name={"Films"}
+                notAvailable={"None"}
+              />
+            </Box>
+          </Box>
         </Container>
       </Flex>
     </VStack>

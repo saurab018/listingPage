@@ -1,18 +1,26 @@
 import {
+  Accordion,
+  AccordionButton,
+  AccordionItem,
+  AccordionPanel,
   Badge,
   Box,
   Button,
   Container,
   Flex,
   IconButton,
+  Link,
+  LinkBox,
   ListIcon,
   ListItem,
+  Text,
   UnorderedList,
   VStack,
 } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
+import AccordionComponent from "../../../Accordion";
 
-function PeopleItem({ data }) {
+function PeopleItem({ data, url }) {
   const {
     birth_year,
     eye_color,
@@ -31,51 +39,13 @@ function PeopleItem({ data }) {
   // console.log("data", data);
 
   return (
-    // <VStack>
-    //   <Flex justifyContent={"start"} gap="2" marginY={"4"}>
-    //     <IconButton
-    //       aria-label="Back To Previous Page"
-    //       icon={<ArrowBackIcon />}
-    //       color={"blackAlpha.600"}
-    //     />
-    //   </Flex>
-    //   <Container
-    //     marginTop={"4em"}
-    //     maxWidth={"lg"}
-    //     minW={"md"}
-    //     border={"0.3em solid gray"}
-    //     padding={"1em"}
-    //   >
-    //     <Box border={"0.4em"}>
-    //       <Box>Name: {name}</Box>
-    //       <Box>
-    //         gender:
-    //         <Badge colorScheme={gender == "male" ? "green" : "purple"}>
-    //           {gender}
-    //         </Badge>
-    //       </Box>
-    //       <Box>Birth Year: {birth_year}</Box>
-    //       <Box>eye color: {eye_color}</Box>
-    //       <Box>hair color: {hair_color}</Box>
-    //       <Box>height: {height}</Box>
-    //       <Box>mass: {mass}</Box>
-    //       <Box>skin color: {skin_color}</Box>
-    //       <Box>starships: {starship}</Box>
-    //       <Box>species: {species}</Box>
-    //       <Box>vechiles: {vehicles}</Box>
-    //       <Box>films: {films}</Box>
-    //       <Box>home world: {homeworld}</Box>
-    //     </Box>
-    //   </Container>
-    // </VStack>
-    <VStack spacing={4} align="start" padding={4} color={"cyan.600"}>
+    <VStack align="start" color={"cyan.600"} minH={"100vh"}>
       <Flex gap={2} marginTop={4} width={"100vw"}>
         <Box
           sx={{
             fontSize: "2xl",
             fontWeight: "bold",
             color: "black",
-            cursor: "pointer",
             marginLeft: "1em",
             ":hover": {
               color: "blue",
@@ -88,67 +58,101 @@ function PeopleItem({ data }) {
       <Flex width={"100vw"} justifyContent={"center"}>
         <Container
           maxWidth="lg"
+          minW={{ base: "17em", sm: "21.9em" }}
           border="1px solid gray"
+          minH={"35em"}
           padding={4}
           rounded={"3xl"}
           shadow={"2xl"}
-          boxShadow={"white"}
+          boxShadow={"2xl"}
           transition={"0.3s ease-out"}
           _hover={{
             shadow: "xl",
-            cursor: "pointer",
             scale: "1.2",
-            // translate: "1.5em 1.5em",
           }}
         >
-          <Box>
+          <Box border={"1px solid black"}>
+            <Button
+              // sx={{ marginLeft: "auto", mr: "1em" }}
+              marginLeft={"auto"}
+              onClick={() => history.back()}
+              colorScheme="teal"
+            >
+              Peoples
+            </Button>
+          </Box>
+
+          <Box marginTop={"0.5em"}>
             <Box as="h2" fontSize="2xl" fontWeight="bold" marginBottom={4}>
               {name}
             </Box>
             <Box>
-              <strong>Gender:</strong>
-              <Badge colorScheme={gender == "male" ? "green" : "purple"}>
-                {gender}
-              </Badge>
+              <strong>Gender: </strong>
+              {gender}
             </Box>
             <Box>
-              <strong>Birth Year:</strong> {birth_year}
+              <strong>Birth Year: </strong> {birth_year}
+            </Box>
+
+            <Box>
+              <strong>Eye Color: </strong> {eye_color}
             </Box>
             <Box>
-              <strong>Eye Color:</strong> {eye_color}
+              <strong>Hair Color: </strong> {hair_color}
             </Box>
             <Box>
-              <strong>Hair Color:</strong> {hair_color}
+              <strong>Height: </strong> {height}
             </Box>
             <Box>
-              <strong>Height:</strong> {height}
+              <strong>Mass: </strong> {mass}
             </Box>
             <Box>
-              <strong>Mass:</strong> {mass}
+              <strong>Skin Color: </strong> {skin_color}
             </Box>
             <Box>
-              <strong>Skin Color:</strong> {skin_color}
+              <strong>Homeworld: </strong>
+              <Link href={homeworld} target="_blank" _hover={{ color: "blue" }}>
+                Planet No
+                {homeworld.substr(homeworld.length - 2, homeworld.length - 2)}
+              </Link>
             </Box>
             <Box>
-              <strong>Starships:</strong> {starship}
+              <strong>Page URL: </strong>
+              <Link href={url} target="_blank" _hover={{ color: "blue" }}>
+                {`User ${url.id}`}
+              </Link>
             </Box>
             <Box>
-              <strong>Species:</strong> {species}
+              <AccordionComponent
+                data={starship}
+                name={"StarShip"}
+                notAvailable={"none"}
+              />
             </Box>
             <Box>
-              <strong>Vehicles:</strong> {vehicles}
+              <AccordionComponent
+                data={species}
+                name={"Species"}
+                notAvailable={"none"}
+              />
             </Box>
             <Box>
-              <strong>Films:</strong>
-              <UnorderedList>
-                {films.length > 0 &&
-                  films.map((film, index) => (
-                    <ListItem key={index}>{film}</ListItem>
-                  ))}
-              </UnorderedList>
+              <AccordionComponent
+                data={vehicles}
+                name={"Vehicles"}
+                notAvailable={"none"}
+              />
             </Box>
             <Box>
-              <strong>Homeworld:</strong> {homeworld}
+              {/* <strong>Films:</strong> */}
+
+              {
+                <AccordionComponent
+                  data={films}
+                  name={"Films"}
+                  notAvailable={"none"}
+                />
+              }
             </Box>
           </Box>
         </Container>

@@ -53,10 +53,12 @@ const ListingItems = ({ data, category }) => {
                     cursor: "pointer",
                     backgroundColor: "#DFDFDF",
                     shadow: "md",
+                    borderTop: "#333333",
                     color: "#333333",
                   }}
                   sx={{
                     borderRadius: "1em",
+                    borderTop: "solid black",
                     shadow: "lg",
                     backgroundColor: "#FEFEFE",
                   }}
