@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Container,
   Flex,
   Input,
   Stack,
@@ -18,6 +19,7 @@ import {
 import { searchResultFunction } from "../../../helper/Functions";
 import { ListingContext } from "../../../store/context";
 import SearchList from "./SearchList";
+import { Search2Icon } from "@chakra-ui/icons";
 
 function Header({}, ref) {
   const {
@@ -69,64 +71,67 @@ function Header({}, ref) {
   }, [deferedSearchTerm, planets, peoples]);
 
   return (
-    <Box width={"100%"} paddingX={"1em"}>
+    <Box minW={{ sm: "30em", md: "50em" }} paddingX={"1em"}>
       <Flex
         direction={{ base: "column" }}
-        // minW={{ sm: "100%", md: "100%", lg: "100%", xl: "100%" }}
         spacing="4"
         align="center"
         justifyContent="space-between"
         marginTop={"2em"}
         border={"1px solid black"}
       >
-        {/* <Stack */}
-        {/* p="1"
-          spacing="4"
-          direction="row"
-          marginRight={"auto"}
-          marginLeft={{ sm: "auto", md: "3em" }}
-          marginY={"0.30em"} */}
-        {/* > */}
-        <Tabs
+        <Stack
+          position={"relative"}
+          width={"inherit"}
           p="1"
           spacing="4"
           direction="row"
           marginRight={"auto"}
-          marginLeft={{ sm: "auto", md: "3em" }}
+          marginLeft={{ sm: "auto" }}
           marginY={"0.30em"}
+          backgroundColor={"#5A5A5A"}
+          minW={{ sm: "29em", md: "49em" }}
+          justifyContent={{ base: "center", md: "start" }}
         >
-          <TabList>
-            <Tab
-              sx={{ colorScheme: peoples ? "blue" : "gray" }}
-              onClick={() =>
-                onClickHandler(false, setPlanets, true, setPeoples)
-              }
-            >
-              Button 1
-            </Tab>
-            <Tab>Button 2</Tab>
-            <Tab>Button 3</Tab>
-          </TabList>
-        </Tabs>
-        {/* <Button
+          <Button
             onClick={() => onClickHandler(false, setPlanets, true, setPeoples)}
-            colorScheme="teal"
+            colorScheme="#5A5A5A"
+            isActive={peoples}
+            marginLeft={"3em"}
+            top={"0.25em"}
+            rounded={"none"}
+            _hover={{ borderBottom: "0.3em solid white" }}
+            _active={{ borderBottom: "0.2em solid white" }}
           >
             Peoples
           </Button>
+
+          <Button
+            onClick={() => onClickHandler(true, setPlanets, false, setPeoples)}
+            colorScheme="#5A5A5A"
+            isActive={planets}
+            // marginLeft={"3em"}
+            top={"0.25em"}
+            right={"0.5em"}
+            rounded={"none"}
+            _hover={{ borderBottom: "0.3em solid white" }}
+            _active={{ borderBottom: "0.2em solid white" }}
+          >
+            Planets
+          </Button>
           <Button
             onClick={() => onClickHandler(true, setPlanets, true, setPeoples)}
-            colorScheme="green"
+            colorScheme="#5A5A5A"
+            isActive={peoples && planets}
+            top={"0.25em"}
+            right={"1.0em"}
+            rounded={"none"}
+            _hover={{ borderBottom: "0.3em solid white" }}
+            _active={{ borderBottom: "0.2em solid white" }}
           >
             All
           </Button>
-          <Button
-            onClick={() => onClickHandler(true, setPlanets, false, setPeoples)}
-            colorScheme="blue"
-          >
-            Planets
-          </Button> */}
-        {/* </Stack> */}
+        </Stack>
         <Box p="1" position={"relative"} marginLeft={{ md: "auto" }}>
           <Input
             type="text"
@@ -136,6 +141,8 @@ function Header({}, ref) {
             value={searchTerm}
             minWidth={"18em"}
             ref={ref}
+            border={"0.2em solid black"}
+            right={<Search2Icon />}
           />
         </Box>
       </Flex>
