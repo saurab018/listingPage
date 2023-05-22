@@ -4,10 +4,9 @@ import {
   Container,
   Flex,
   Input,
+  InputGroup,
+  InputRightElement,
   Stack,
-  Tab,
-  TabList,
-  Tabs,
 } from "@chakra-ui/react";
 import {
   forwardRef,
@@ -18,7 +17,6 @@ import {
 } from "react";
 import { searchResultFunction } from "../../../helper/Functions";
 import { ListingContext } from "../../../store/context";
-import SearchList from "./SearchList";
 import { Search2Icon } from "@chakra-ui/icons";
 
 function Header({}, ref) {
@@ -132,18 +130,28 @@ function Header({}, ref) {
             All
           </Button>
         </Stack>
-        <Box p="1" position={"relative"} marginLeft={{ md: "auto" }}>
-          <Input
-            type="text"
-            onChange={onChangeHandler}
-            placeholder="Search..."
-            variant="outline"
-            value={searchTerm}
-            minWidth={"18em"}
-            ref={ref}
-            border={"0.2em solid black"}
-            right={<Search2Icon />}
-          />
+        <Box
+          p="1"
+          position={"relative"}
+          marginLeft={{ md: "auto" }}
+          marginTop={"1em"}
+        >
+          <InputGroup>
+            <Input
+              type="text"
+              onChange={onChangeHandler}
+              placeholder="Search..."
+              variant="outline"
+              value={searchTerm}
+              minWidth={"18em"}
+              ref={ref}
+              border={"0.2em solid black"}
+            />
+            <InputRightElement
+              pointerEvents="none"
+              children={<Search2Icon color="gray.300" />}
+            />
+          </InputGroup>
         </Box>
       </Flex>
     </Box>

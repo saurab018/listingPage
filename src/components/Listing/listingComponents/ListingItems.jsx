@@ -51,7 +51,8 @@ const ListingItems = ({ data, category }) => {
                   gap="2"
                   _hover={{
                     cursor: "pointer",
-                    backgroundColor: "#DFDFDF",
+                    backgroundColor:
+                      category == "people" ? "#C4DCF2" : "#F1F4CD",
                     shadow: "md",
                     borderTop: "#333333",
                     color: "#333333",
@@ -60,7 +61,8 @@ const ListingItems = ({ data, category }) => {
                     borderRadius: "1em",
                     borderTop: "solid black",
                     shadow: "lg",
-                    backgroundColor: "#FEFEFE",
+                    backgroundColor:
+                      category == "people" ? "#D4EDF9" : "#F5F7DD",
                   }}
                   onClick={() => selectItem(listItem)}
                 >
