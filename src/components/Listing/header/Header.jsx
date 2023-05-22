@@ -56,7 +56,7 @@ function Header({}, ref) {
   useEffect(() => {
     const searchItem = searchResultFunction(
       { planets, peoples, planetsData, peopleData },
-      searchTerm
+      deferedSearchTerm
     );
     console.log("===", Object.keys(searchItem) == 0);
 
