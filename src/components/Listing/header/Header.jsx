@@ -95,7 +95,7 @@ function Header({}, ref) {
             onClick={() => onClickHandler(false, setPlanets, true, setPeoples)}
             colorScheme="#5A5A5A"
             isActive={peoples}
-            marginLeft={"3em"}
+            marginLeft={{ base: "1.5em", sm: "2em", md: "3em" }}
             top={"0.25em"}
             rounded={"none"}
             _hover={{ borderBottom: "0.3em solid white" }}
@@ -110,7 +110,7 @@ function Header({}, ref) {
             isActive={planets}
             // marginLeft={"3em"}
             top={"0.25em"}
-            right={"0.5em"}
+            right={{ base: "1.3em", md: "0.5em", lg: "1em" }}
             rounded={"none"}
             _hover={{ borderBottom: "0.3em solid white" }}
             _active={{ borderBottom: "0.2em solid white" }}
@@ -122,7 +122,7 @@ function Header({}, ref) {
             colorScheme="#5A5A5A"
             isActive={peoples && planets}
             top={"0.25em"}
-            right={"1.0em"}
+            right={{ base: "2.3em", md: "1em", lg: "2.1em" }}
             rounded={"none"}
             _hover={{ borderBottom: "0.3em solid white" }}
             _active={{ borderBottom: "0.2em solid white" }}
