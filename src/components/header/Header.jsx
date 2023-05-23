@@ -28,7 +28,6 @@ function Header({}, ref) {
   const [searchTerm, setSearchTerm] = useState("");
 
   const deferedSearchTerm = useDeferredValue(searchTerm);
-  console.log("sea", searchTerm);
 
   const onChangeHandler = (e) => {
     setSearchTerm(e.target.value);
@@ -42,7 +41,6 @@ function Header({}, ref) {
       { planets, peoples, planetsData, peopleData },
       deferedSearchTerm
     );
-    console.log("===", Object.keys(searchItem) == 0);
 
     if (Object.keys(searchItem) !== 0) {
       setSearchResult({ ...searchItem });

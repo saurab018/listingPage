@@ -38,8 +38,6 @@ function Listing() {
     }
   }, [loading1, loading2]);
 
-  console.log("sea hRes t", searchResult);
-
   return (
     <>
       <VStack minH={"100vh"} backgroundColor={"#F1F1F1"}>

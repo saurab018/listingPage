@@ -1,20 +1,10 @@
-import {
-  Box,
-  Container,
-  Fade,
-  Grid,
-  GridItem,
-  ScaleFade,
-  SimpleGrid,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Fade, Grid, GridItem, ScaleFade, Text } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ListingContext } from "../../store/context";
 
 const ListingItems = ({ data, category }) => {
   const { selectItem } = useContext(ListingContext);
-  console.log("item", data);
   return (
     <>
       {data.length !== 0 && (
