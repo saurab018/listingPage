@@ -1,16 +1,7 @@
 import { Link as RouterLink } from "react-router-dom";
-import {
-  Box,
-  Button,
-  Container,
-  Flex,
-  IconButton,
-  Link,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Container, VStack } from "@chakra-ui/react";
 import React from "react";
-import HeaderContainer from "../../../header/HeaderContainer";
+import HeaderContainer from "../../header/HeaderContainer";
 import PlanetsCard from "./PlanetsCard";
 
 function PlanetItem({ data, url }) {

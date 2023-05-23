@@ -63,7 +63,6 @@ function Listing() {
                   gap={"2"}
                   justifyContent={"center"}
                   alignItems={"start"}
-                  mt={{ base: "2" }}
                   mb={{ base: "8" }}
                   direction={{ base: "column", sm: "row" }}
                 >

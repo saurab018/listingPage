@@ -13,7 +13,6 @@ export function searchItem(input, { searchPeople, searchPlantes }) {
       return regex.test(item.name);
     });
   }
-  console.log("jsdj", { people: people, planets: planets });
   return { people: people || [], planets: planets || [] };
 }
 
@@ -34,16 +33,6 @@ export const searchResultFunction = (
   if (searchPlantes) {
     searchPlantes = [...planetsData];
   }
-  console.log("peoTrue", peoples, "planTrue", planets);
 
-  console.log("people", searchPeople, "planets", searchPlantes);
   return searchItem(search, { searchPeople, searchPlantes });
 };
-
-export function debounce(func, delay) {
-  let timer;
-  return (...args) => {
-    clearTimeout(timer);
-    timer = setTimeout(() => func(...args), delay);
-  };
-}

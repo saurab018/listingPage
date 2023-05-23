@@ -1,6 +1,6 @@
 import { Box, Container, VStack } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
-import HeaderContainer from "../../../header/HeaderContainer";
+import HeaderContainer from "../../header/HeaderContainer";
 import PeopleCard from "./PeopleCard";
 
 function PeopleItem({ data, url }) {

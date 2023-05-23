@@ -8,7 +8,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import AccordionComponent from "../../../Accordion";
+import AccordionComponent from "../../Accordion";
 
 function PlanetsCard({ data, url }) {
   const {

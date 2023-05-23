@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { ListingContext } from "../store/context";
-import PeopleItem from "../components/listingComponents/individualComponent/people/PeopleItem";
-import PlanetItem from "../components/listingComponents/individualComponent/planets/PlanetItem";
+import PeopleItem from "../components/individualComponent/people/PeopleItem";
+import PlanetItem from "../components/individualComponent/planets/PlanetItem";
 import SpinnerComponent from "../components/spinner/Spinner";
 import useFetch from "../helper/customHooks/useFetch";
 

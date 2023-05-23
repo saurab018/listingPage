@@ -2,7 +2,11 @@ import axios from "axios";
 import useSWR from "swr";
 
 function useFetch(url) {
-  const { data, error } = useSWR(url, fetcher);
+  const { data, error } = useSWR(url, fetcher, {
+    revalidateIfStale: false,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  });
 
   return { data, loading: !error && !data, error };
 }

@@ -1,13 +1,5 @@
-import {
-  Box,
-  Button,
-  Container,
-  Flex,
-  Link,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
-import AccordionComponent from "../../../Accordion";
+import { Box, Button, Container, Flex, Link, Text } from "@chakra-ui/react";
+import AccordionComponent from "../../Accordion";
 function PeopleCard({ data, url }) {
   const {
     birth_year,
