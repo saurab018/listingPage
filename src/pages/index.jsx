@@ -85,8 +85,8 @@ function Listing() {
                     <Container>
                       <ListingItems
                         data={
-                          Object.keys(searchResult).length !== 0 &&
-                          inputText.current?.value !== ""
+                          inputText.current?.value !== "" &&
+                          Object.keys(searchResult).length !== 0
                             ? searchResult.planets
                             : fetchPlanetsData
                         }

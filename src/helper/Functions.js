@@ -14,7 +14,7 @@ export function searchItem(input, { searchPeople, searchPlantes }) {
     });
   }
   console.log("jsdj", { people: people, planets: planets });
-  return { people: people, planets: planets };
+  return { people: people || [], planets: planets || [] };
 }
 
 export const searchResultFunction = (
@@ -34,6 +34,9 @@ export const searchResultFunction = (
   if (searchPlantes) {
     searchPlantes = [...planetsData];
   }
+  console.log("peoTrue", peoples, "planTrue", planets);
+
+  console.log("people", searchPeople, "planets", searchPlantes);
   return searchItem(search, { searchPeople, searchPlantes });
 };
 
