@@ -1,5 +1,5 @@
 import { Box, Button, Container, Flex, Link, VStack } from "@chakra-ui/react";
-import AccordionComponent from "../../../Accordion";
+import AccordionComponent from "../../Accordion";
 import { Link as RouterLink } from "react-router-dom";
 
 function PeopleItem({ data, url }) {

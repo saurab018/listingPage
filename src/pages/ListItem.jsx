@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { ListingContext } from "../store/context";
-import PeopleItem from "../components/Listing/listingComponents/individualComponent/PeopleItem";
-import PlanetItem from "../components/Listing/listingComponents/individualComponent/PlanetItem";
+import PeopleItem from "../components/listingComponents/individualComponent/PeopleItem";
+import PlanetItem from "../components/listingComponents/individualComponent/PlanetItem";
 import SpinnerComponent from "../components/spinner/Spinner";
 import useFetch from "../helper/customHooks/useFetch";
-import axios from "axios";
 
 function ListItem() {
   const { selectedItem } = useContext(ListingContext);

@@ -10,7 +10,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
-import AccordionComponent from "../../../Accordion";
+import AccordionComponent from "../../Accordion";
 
 function PlanetItem({ data, url }) {
   console.log(data);
@@ -131,8 +131,8 @@ function PlanetItem({ data, url }) {
               marginTop={"1em"}
               marginRight={"1em"}
               onClick={() => history.back()}
-              backgroundColor="blue.200"
-              color={"brown"}
+              backgroundColor="blue.500"
+              color={"white"}
               _hover={{ color: "black", backgroundColor: "blue.300" }}
             >
               Back

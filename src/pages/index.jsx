@@ -10,9 +10,9 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import Header from "../components/Listing/header/Header";
+import Header from "../components/header/Header";
 import { useContext, useEffect, useRef, useState } from "react";
-import ListingItems from "../components/Listing/listingComponents/ListingItems";
+import ListingItems from "../components/listingComponents/ListingItems";
 import { ListingContext } from "../store/context";
 import SpinnerComponent from "../components/spinner/Spinner";
 import useFetch from "../helper/customHooks/useFetch";
@@ -47,7 +47,7 @@ function Listing() {
           backgroundColor={"#F8F8F8"}
           minH={"100vh"}
           centerContent
-          marginTop={"2em"}
+          marginTop={"1em"}
           minW={{ sm: "md", md: "xl", xl: "2xl" }}
           maxW={"6xl"}
           display="flex"

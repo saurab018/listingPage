@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { ListingContext } from "../../../store/context";
+import { ListingContext } from "../../store/context";
 
 const ListingItems = ({ data, category }) => {
   const { selectItem } = useContext(ListingContext);
