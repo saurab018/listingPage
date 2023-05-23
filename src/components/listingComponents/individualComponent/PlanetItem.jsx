@@ -7,10 +7,12 @@ import {
   Flex,
   IconButton,
   Link,
+  Text,
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
 import AccordionComponent from "../../Accordion";
+import HeaderContainer from "../../header/HeaderContainer";
 
 function PlanetItem({ data, url }) {
   console.log(data);
@@ -28,37 +30,51 @@ function PlanetItem({ data, url }) {
     terrain,
   } = data;
   return (
-    <VStack align="start" color={"cyan.600"} minH={"100vh"}>
-      <Flex gap={2} marginTop={4} width={"100vw"}>
-        <RouterLink to={"/"}>
-          <Box
-            sx={{
-              fontSize: "2xl",
-              fontWeight: "bold",
-              color: "black",
-              marginLeft: "1em",
-              backgroundColor: "#F5F7DD",
-              ":hover": {
-                color: "blue",
-                cursor: "pointer",
-                backgroundColor: "#F1F4CD",
-              },
-            }}
-          >
-            Listing Page
-          </Box>
-        </RouterLink>
-      </Flex>
-      <Flex width={"100vw"} justifyContent={"center"}>
+    <VStack
+      backgroundColor={"#E5E7CF"}
+      justifyItems={"center"}
+      color={"cyan.600"}
+      minH={"100vh"}
+    >
+      <HeaderContainer>
+        <Container display={"flex"} alignItems={"center"} width={"full"}>
+          <RouterLink to={"/"}>
+            <Box
+              sx={{
+                fontSize: "2xl",
+                fontWeight: "bold",
+                color: "black",
+                marginLeft: "none",
+                transition: "0.3s ease-in",
+                ":hover": {
+                  cursor: "pointer",
+                  backgroundColor: "#D8DAC1",
+                  rounded: "md",
+                },
+                paddingX: "0.5em",
+              }}
+            >
+              Listing Page
+            </Box>
+          </RouterLink>
+        </Container>
+      </HeaderContainer>
+      <Flex width={"100vw"} justifyContent={"center"} marginTop={"2em"}>
         <Container
           rounded={"3xl"}
           shadow={"2xl"}
           boxShadow={"2xl"}
+          backgroundColor={"#F5F7DD"}
           _hover={{
             shadow: "3xl",
             scale: "1.2",
           }}
         >
+          <Box textAlign={"center"} marginTop={"1em"}>
+            <Text as="h2" fontSize={"3xl"}>
+              <strong>Planets Details</strong>
+            </Text>
+          </Box>
           <Container
             maxWidth="lg"
             minW={{ base: "17em", sm: "21.9em" }}

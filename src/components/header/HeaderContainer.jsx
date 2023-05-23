@@ -8,9 +8,8 @@ function HeaderContainer({ children }) {
         direction={{ base: "column" }}
         spacing="4"
         align="center"
-        justifyContent="space-between"
+        justifyItems="space-between"
         marginTop={"2em"}
-        border={"1px solid black"}
       >
         {children}
       </Flex>

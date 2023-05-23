@@ -1,6 +1,15 @@
-import { Box, Button, Container, Flex, Link, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  Link,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import AccordionComponent from "../../Accordion";
 import { Link as RouterLink } from "react-router-dom";
+import HeaderContainer from "../../header/HeaderContainer";
 
 function PeopleItem({ data, url }) {
   const {
@@ -21,37 +30,51 @@ function PeopleItem({ data, url }) {
   // console.log("data", data);
 
   return (
-    <VStack align="start" color={"cyan.600"} minH={"100vh"}>
-      <Flex gap={2} marginTop={4} width={"100vw"}>
-        <RouterLink to={"/"}>
-          <Box
-            sx={{
-              fontSize: "2xl",
-              fontWeight: "bold",
-              color: "black",
-              marginLeft: "1em",
-              ":hover": {
-                color: "blue",
-                cursor: "pointer",
-              },
-            }}
-          >
-            Listing Page
-          </Box>
-        </RouterLink>
-      </Flex>
+    <VStack
+      backgroundColor={"#BFD6E1"}
+      justifyItems={"center"}
+      color={"cyan.600"}
+      minH={"100vh"}
+    >
+      <HeaderContainer>
+        <Container display={"flex"} alignItems={"center"} width={"full"}>
+          <RouterLink to={"/"}>
+            <Box
+              sx={{
+                fontSize: "2xl",
+                fontWeight: "bold",
+                color: "black",
+                marginLeft: "none",
+                transition: "0.3s ease-in",
+                ":hover": {
+                  cursor: "pointer",
+                  backgroundColor: "#B1CCD8",
+                  rounded: "md",
+                },
+                paddingX: "0.5em",
+              }}
+            >
+              Listing Page
+            </Box>
+          </RouterLink>
+        </Container>
+      </HeaderContainer>
       <Flex width={"100vw"} justifyContent={"center"}>
         <Container
           rounded={"3xl"}
           shadow={"2xl"}
-          boxShadow={"2xl"}
           backgroundColor="#D4EDF9"
           _hover={{
-            shadow: "3xl",
+            shadow: "4xl",
+            boxShadow: "2xl",
             scale: "1.2",
-            backgroundColor: "#C4DCF2",
           }}
         >
+          <Box textAlign={"center"} marginTop={"1em"}>
+            <Text as="h2" fontSize={"3xl"}>
+              <strong>Person Details</strong>
+            </Text>
+          </Box>
           <Container
             maxWidth="lg"
             minW={{ base: "17em", sm: "21.9em" }}
@@ -142,8 +165,8 @@ function PeopleItem({ data, url }) {
               marginTop={"1em"}
               marginRight={"1em"}
               onClick={() => history.back()}
-              backgroundColor="blue.200"
-              color={"brown"}
+              backgroundColor="blue.500"
+              color={"white"}
               _hover={{ color: "black", backgroundColor: "blue.300" }}
             >
               Back

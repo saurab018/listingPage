@@ -16,6 +16,7 @@ import ListingItems from "../components/listingComponents/ListingItems";
 import { ListingContext } from "../store/context";
 import SpinnerComponent from "../components/spinner/Spinner";
 import useFetch from "../helper/customHooks/useFetch";
+import NotFoundPage from "../components/NotFoundPage";
 
 function Listing() {
   const { setPeopleData, setPlanetsData, planets, peoples, searchResult } =
@@ -37,7 +38,6 @@ function Listing() {
     }
   }, [loading1, loading2]);
 
-  // console.log("inputRef", inputText.current.value === "");
   console.log("sea hRes t", searchResult);
 
   return (
@@ -45,14 +45,14 @@ function Listing() {
       <VStack minH={"100vh"} backgroundColor={"#F1F1F1"}>
         <Container
           backgroundColor={"#F8F8F8"}
-          minH={"100vh"}
+          minH={"95vh"}
           centerContent
           marginTop={"1em"}
           minW={{ sm: "md", md: "xl", xl: "2xl" }}
           maxW={"6xl"}
           display="flex"
           flexDirection={"column"}
-          border={"1px solid black"}
+          boxShadow={"2xl"}
         >
           <Header ref={inputText} />
           {loading1 || loading2 ? (
@@ -65,7 +65,8 @@ function Listing() {
                   gap={"2"}
                   justifyContent={"center"}
                   alignItems={"start"}
-                  my={{ base: "4", md: "10" }}
+                  mt={{ base: "2" }}
+                  mb={{ base: "8" }}
                   direction={{ base: "column", sm: "row" }}
                 >
                   {peoples && (
@@ -97,9 +98,7 @@ function Listing() {
                   {Object.keys(searchResult).length !== 0 &&
                     searchResult.people.length == 0 &&
                     searchResult.planets.length == 0 &&
-                    inputText.current.value !== "" && (
-                      <Heading>No Result Found</Heading>
-                    )}
+                    inputText.current.value !== "" && <NotFoundPage />}
                 </Flex>
               </Box>
             </>
