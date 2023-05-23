@@ -27,7 +27,7 @@ function Header({}, ref) {
 
   const [searchTerm, setSearchTerm] = useState("");
 
-  const deferedSearchTerm = useDeferredValue(searchTerm);
+  const deferedSearchTerm = useDeferredValue(searchTerm.trim());
 
   const onChangeHandler = (e) => {
     setSearchTerm(e.target.value);
